@@ -1989,34 +1989,11 @@
   @keyframes revealUp { from { opacity: 0; transform: translateY(18px) scale(0.985); } to { opacity: 1; transform: none; } }
   @keyframes burst { 0% { opacity: 0.95; transform: translate(var(--bx), var(--by)) scale(0.4); } 100% { opacity: 0; transform: translate(var(--bx), var(--by)) scale(38); } }
   @keyframes flash { 0% { opacity: 0.6; } 100% { opacity: 0; } }
-  @keyframes bootOut { to { opacity: 0; visibility: hidden; transform: scale(1.12); } }
+  @keyframes bootOut { to { opacity: 0; visibility: hidden; transform: scale(1.06); } }
+  @keyframes bootDraw { to { stroke-dashoffset: 0; } }
+  @keyframes bootFill { 0% { opacity: 0; transform: scale(0.92); } 100% { opacity: 1; transform: scale(1); } }
   @keyframes bootBar { from { width: 0; } to { width: 100%; } }
-  @keyframes bootGlow {
-    0%, 100% { filter: drop-shadow(0 0 14px var(--omnitrix-glow)) drop-shadow(0 0 30px var(--omnitrix-soft)); }
-    50% { filter: drop-shadow(0 0 28px var(--omnitrix-primary)) drop-shadow(0 0 56px var(--omnitrix-glow)); }
-  }
-  @keyframes bootDialPop {
-    0% { transform: scale(0.75) rotate(-90deg); opacity: 0.2; }
-    38% { transform: scale(1.07) rotate(4deg); opacity: 1; }
-    52% { transform: scale(0.98) rotate(0deg); }
-    68% { transform: scale(1.03) rotate(0deg); }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-  @keyframes bootWedgeL {
-    0% { transform: translateX(-16px); }
-    36% { transform: translateX(1.5px); }
-    50%, 100% { transform: translateX(0); }
-  }
-  @keyframes bootWedgeR {
-    0% { transform: translateX(16px); }
-    36% { transform: translateX(-1.5px); }
-    50%, 100% { transform: translateX(0); }
-  }
-  @keyframes bootShockwave {
-    0%, 20% { r: 60px; opacity: 0; stroke-width: 6px; }
-    32% { opacity: 0.95; }
-    100% { r: 99px; opacity: 0; stroke-width: 0.8px; }
-  }
+  @keyframes bootGlow { 0%, 100% { filter: drop-shadow(0 0 12px var(--omnitrix-glow)); } 50% { filter: drop-shadow(0 0 34px var(--omnitrix-primary)); } }
   @keyframes omniScanSweep {
     0% { transform: translateY(-68px); opacity: 0; }
     20% { opacity: 0.72; }
@@ -2031,23 +2008,33 @@
     0%, 100% { transform: scale(0.9); opacity: 0.85; }
     50% { transform: scale(1.18); opacity: 1; }
   }
-  @keyframes hudDialTwist {
-    0% { transform: rotate(0deg) scale(1); }
-    35% { transform: rotate(90deg) scale(1.08); }
-    72% { transform: rotate(84deg) scale(0.98); }
-    100% { transform: rotate(0deg) scale(1); }
+  @keyframes omniStageTilt {
+    0% { transform: rotateX(0deg); }
+    16%, 68% { transform: rotateX(18deg); }
+    84% { transform: rotateX(-3deg); }
+    100% { transform: rotateX(0deg); }
   }
-  @keyframes hudWedgeClampL {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(-12px); }
-    65% { transform: translateX(1.5px); }
-    100% { transform: translateX(0); }
+  @keyframes omniBaseRecede {
+    0%, 100% { transform: translateY(0) scale(1); }
+    18%, 66% { transform: translateY(10px) scale(0.96); }
+    82% { transform: translateY(2px) scale(0.99); }
   }
-  @keyframes hudWedgeClampR {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(12px); }
-    65% { transform: translateX(-1.5px); }
-    100% { transform: translateX(0); }
+  @keyframes omniCapLift {
+    0% { transform: translateY(0) scale(1); filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); }
+    20% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px var(--omnitrix-primary)); }
+    64% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px var(--omnitrix-primary)); }
+    82% { transform: translateY(3px) scale(0.95); filter: drop-shadow(0 0 28px var(--omnitrix-primary)); }
+    100% { transform: translateY(0) scale(1); filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); }
+  }
+  @keyframes omniShaftRise {
+    0% { opacity: 0; transform: translateY(-10px) scaleY(0.35); }
+    18%, 64% { opacity: 1; transform: translateY(0) scaleY(1); }
+    80%, 100% { opacity: 0; transform: translateY(-10px) scaleY(0.35); }
+  }
+  @keyframes omniSlamWave {
+    0%, 72% { r: 58px; opacity: 0; stroke-width: 6px; }
+    80% { opacity: 1; }
+    100% { r: 98px; opacity: 0; stroke-width: 1px; }
   }
   @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
@@ -2129,8 +2116,8 @@
   #bootSplash.done { animation: bootOut 0.35s ease forwards; }
 
   .boot-core {
-    width: 204px;
-    height: 204px;
+    width: 196px;
+    height: 196px;
     position: relative;
     animation: bootGlow 1.6s ease-in-out infinite;
   }
@@ -2141,31 +2128,36 @@
     overflow: visible;
   }
 
-  .boot-core .omni-holo-ring {
+  .boot-ring {
+    stroke: var(--omnitrix-primary);
+    stroke-width: 3.5;
+    fill: none;
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: bootDraw 1.0s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+  }
+
+  .boot-ring.r2 {
+    stroke: var(--omnitrix-secondary);
+    stroke-width: 2;
+    stroke-dasharray: 540;
+    stroke-dashoffset: 540;
+    animation-delay: 0.15s;
+  }
+
+  .boot-hour {
+    stroke: var(--omnitrix-primary);
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    animation: bootDraw 0.85s ease 0.2s forwards;
+  }
+
+  .boot-fill-layer {
     transform-origin: 100px 100px;
-    animation: spinSlow 10s linear infinite;
-  }
-
-  .boot-core .omni-gear-ring {
-    transform-origin: 100px 100px;
-    animation: spinReverseSlow 7s linear infinite;
-  }
-
-  .boot-core .omni-dial-assembly {
-    transform-origin: 100px 100px;
-    animation: bootDialPop 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .boot-core .omni-wedge-l {
-    animation: bootWedgeL 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .boot-core .omni-wedge-r {
-    animation: bootWedgeR 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .boot-core .boot-shockwave {
-    animation: bootShockwave 1.1s ease-out infinite;
+    opacity: 0;
+    animation: bootFill 0.75s ease 0.15s forwards;
   }
 
   .omni-scan-beam {
@@ -2419,33 +2411,92 @@
   .banner-emblem {
     position: relative;
     z-index: 2;
-    width: 112px;
-    height: 112px;
+    width: 114px;
+    height: 114px;
     flex-shrink: 0;
     cursor: pointer;
     border-radius: 50%;
+    perspective: 460px;
     animation: floatY 4s ease-in-out infinite;
-    transition: transform var(--duration-normal) var(--ease-out);
   }
 
-  .banner-emblem:hover {
-    transform: scale(1.06);
+  .banner-emblem .omni-stage-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.38s var(--ease-spring);
   }
 
-  .banner-emblem svg {
+  .banner-emblem .omni-layer {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     overflow: visible;
-    filter: drop-shadow(0 0 14px var(--omnitrix-glow));
+    pointer-events: none;
+  }
+
+  .banner-emblem .omni-layer-base {
+    filter: drop-shadow(0 0 12px var(--omnitrix-glow));
+    transition: transform 0.38s var(--ease-spring);
+  }
+
+  .banner-emblem .omni-layer-shaft {
+    transform-origin: 100px 150px;
+    opacity: 0;
+    transform: translateY(-10px) scaleY(0.35);
+    transition: opacity 0.28s ease, transform 0.38s var(--ease-spring);
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 12px var(--omnitrix-glow));
+  }
+
+  .banner-emblem .omni-layer-cap {
+    transform: translateY(0) scale(1);
+    transition: transform 0.4s var(--ease-spring), filter 0.35s ease;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6));
   }
 
   .banner-emblem .omni-holo-ring { transform-origin: 100px 100px; animation: spinSlow 14s linear infinite; }
   .banner-emblem .omni-gear-ring { transform-origin: 100px 100px; animation: spinReverseSlow 9s linear infinite; }
-  .banner-emblem .omni-dial-assembly { transform-origin: 100px 100px; transition: transform 0.45s var(--ease-spring); }
-  .banner-emblem:hover .omni-dial-assembly { transform: rotate(45deg); }
-  .banner-emblem.dial-twist .omni-dial-assembly { animation: hudDialTwist 0.65s var(--ease-spring); }
-  .banner-emblem.dial-twist .omni-wedge-l { animation: hudWedgeClampL 0.55s var(--ease-out); }
-  .banner-emblem.dial-twist .omni-wedge-r { animation: hudWedgeClampR 0.55s var(--ease-out); }
+  .banner-emblem .omni-slam-wave { opacity: 0; }
+
+  .banner-emblem:hover .omni-stage-3d {
+    transform: rotateX(18deg);
+  }
+
+  .banner-emblem:hover .omni-layer-base {
+    transform: translateY(10px) scale(0.96);
+  }
+
+  .banner-emblem:hover .omni-layer-shaft {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+
+  .banner-emblem:hover .omni-layer-cap {
+    transform: translateY(-20px) scale(1.05);
+    filter: drop-shadow(0 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px var(--omnitrix-primary));
+  }
+
+  .banner-emblem.dial-twist .omni-stage-3d {
+    animation: omniStageTilt 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .banner-emblem.dial-twist .omni-layer-base {
+    animation: omniBaseRecede 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .banner-emblem.dial-twist .omni-layer-shaft {
+    animation: omniShaftRise 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .banner-emblem.dial-twist .omni-layer-cap {
+    animation: omniCapLift 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .banner-emblem.dial-twist .omni-slam-wave {
+    animation: omniSlamWave 0.86s ease-out;
+  }
 
   .section-kicker::before {
     content: "⬢ ";
@@ -2768,23 +2819,11 @@
         </clipPath>
       </defs>
 
-      <circle cx="100" cy="100" r="97" fill="url(#bootAuraGrad)" />
-      <circle class="boot-shockwave" cx="100" cy="100" r="60" stroke="var(--omnitrix-primary)" fill="none" />
+      <circle class="boot-ring" cx="100" cy="100" r="94" />
+      <circle class="boot-ring r2" cx="100" cy="100" r="82" />
 
-      <g class="omni-holo-ring">
-        <circle cx="100" cy="100" r="94" stroke="var(--omnitrix-secondary)" stroke-width="2" stroke-dasharray="22 8 5 8 5 12" stroke-opacity="0.82" />
-        <path d="M100 3 A97 97 0 0 1 168 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M197 100 A97 97 0 0 1 168 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M100 197 A97 97 0 0 1 32 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M3 100 A97 97 0 0 1 32 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-      </g>
-
-      <g class="omni-gear-ring">
-        <circle cx="100" cy="100" r="85" stroke="var(--omnitrix-primary)" stroke-width="4" stroke-dasharray="3.2 8" stroke-opacity="0.58" />
-        <circle cx="100" cy="100" r="80" stroke="var(--omnitrix-secondary)" stroke-width="1.4" stroke-dasharray="32 14" stroke-opacity="0.65" />
-      </g>
-
-      <g class="omni-dial-assembly">
+      <g class="boot-fill-layer">
+        <circle cx="100" cy="100" r="97" fill="url(#bootAuraGrad)" />
         <circle cx="100" cy="100" r="76" fill="url(#bootBezelGrad)" stroke="#6a829a" stroke-width="2.2" />
         <circle cx="100" cy="100" r="68.5" fill="none" stroke="#060a0f" stroke-width="4.5" />
         <circle cx="100" cy="100" r="68.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="1.6" stroke-dasharray="14 13" stroke-opacity="0.78" />
@@ -2803,17 +2842,11 @@
           <path d="M100 38 V162 M76 46 L100 78 L124 46 M76 154 L100 122 L124 154" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.4" />
           <rect class="omni-scan-beam" x="34" y="93" width="132" height="13" fill="#ffffff" fill-opacity="0.34" />
 
-          <g class="omni-wedge-l">
-            <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
-            <path d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
-            <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
-          </g>
+          <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+          <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
 
-          <g class="omni-wedge-r">
-            <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
-            <path d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
-            <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
-          </g>
+          <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+          <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
         </g>
 
         <circle cx="100" cy="100" r="60.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2.6" />
@@ -2841,6 +2874,9 @@
           <circle cx="51" cy="51" r="2" fill="#ffffff" />
         </g>
       </g>
+
+      <path class="boot-hour" d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" stroke-linecap="round" />
+      <path class="boot-hour" d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" stroke-linecap="round" />
     </svg>
   </div>
   <p class="boot-kicker">ENGENHARIA DE SOFTWARE // PORTFÓLIO</p>
@@ -2929,10 +2965,10 @@
 
           <div class="omnitrix-shutter" id="omnitrixShutter">
             <svg aria-hidden="true" focusable="false" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M 0,0 L 28,10 Q 38,34 45,50 Q 38,66 28,90 L 0,100 Z" fill="#05080c" stroke="#2c3e50" stroke-width="2" />
-              <path d="M 100,0 L 72,10 Q 62,34 55,50 Q 62,66 72,90 L 100,100 Z" fill="#05080c" stroke="#2c3e50" stroke-width="2" />
-              <path d="M 28,10 Q 38,34 45,50 Q 38,66 28,90" fill="none" stroke="currentColor" stroke-width="2.8" style="color: var(--omnitrix-primary);" />
-              <path d="M 72,10 Q 62,34 55,50 Q 62,66 72,90" fill="none" stroke="currentColor" stroke-width="2.8" style="color: var(--omnitrix-primary);" />
+              <polygon points="0,0 32,50 0,100" fill="#050b07"/>
+              <polygon points="100,0 68,50 100,100" fill="#050b07"/>
+              <polygon points="0,0 32,50 0,100" stroke="currentColor" stroke-width="2.5" fill="none" style="color: var(--omnitrix-primary);"/>
+              <polygon points="100,0 68,50 100,100" stroke="currentColor" stroke-width="2.5" fill="none" style="color: var(--omnitrix-primary);"/>
             </svg>
           </div>
 
@@ -3008,110 +3044,135 @@
           <h2 class="screen-banner-title" id="bannerTitle">Backend Júnior com Experiência Real em Produção</h2>
           <p class="screen-banner-desc" id="bannerDesc">Atuação diária mantendo sistemas de múltiplas farmácias na Zetti (SQL Server &amp; VB6) + 8 projetos práticos no GitHub.</p>
         </div>
-        <div class="banner-emblem" id="bannerEmblem" onclick="cycleNextTab()" title="Clique para girar o Omnitrix e avançar de seção" aria-hidden="true">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
-      <defs>
-        <radialGradient id="hudAuraGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="var(--omnitrix-primary)" stop-opacity="0.42" />
-          <stop offset="66%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.14" />
-          <stop offset="100%" stop-color="var(--omnitrix-primary)" stop-opacity="0" />
-        </radialGradient>
-        <linearGradient id="hudBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#5c7288" />
-          <stop offset="26%" stop-color="#2a3948" />
-          <stop offset="52%" stop-color="#0d141c" />
-          <stop offset="78%" stop-color="#243240" />
-          <stop offset="100%" stop-color="#4c6074" />
-        </linearGradient>
-        <linearGradient id="hudShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0d131a" />
-          <stop offset="50%" stop-color="#05080c" />
-          <stop offset="100%" stop-color="#020406" />
-        </linearGradient>
-        <radialGradient id="hudCoreGrad" cx="50%" cy="50%" r="56%">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
-          <stop offset="20%" stop-color="var(--omnitrix-primary)" stop-opacity="1" />
-          <stop offset="74%" stop-color="var(--omnitrix-primary)" stop-opacity="0.94" />
-          <stop offset="100%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.98" />
-        </radialGradient>
-        <clipPath id="hudFaceClip">
-          <circle cx="100" cy="100" r="60" />
-        </clipPath>
-      </defs>
+        <div class="banner-emblem" id="bannerEmblem" onclick="cycleNextTab()" title="Passe o cursor ou clique para levantar o núcleo do Omnitrix" aria-hidden="true">
+          <div class="omni-stage-3d">
+            <svg class="omni-layer omni-layer-base" aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
+              <defs>
+                <radialGradient id="hudAuraGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="var(--omnitrix-primary)" stop-opacity="0.45" />
+                  <stop offset="66%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.16" />
+                  <stop offset="100%" stop-color="var(--omnitrix-primary)" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <circle cx="100" cy="100" r="97" fill="url(#hudAuraGrad)" />
+              <circle cx="100" cy="100" r="78" fill="#04070b" stroke="#2c3e50" stroke-width="3.2" />
+              <circle cx="100" cy="100" r="68" fill="#020407" stroke="var(--omnitrix-primary)" stroke-width="2" stroke-dasharray="10 8" stroke-opacity="0.7" />
+              <circle class="omni-slam-wave" cx="100" cy="100" r="60" stroke="var(--omnitrix-primary)" fill="none" />
+              <g class="omni-holo-ring">
+                <circle cx="100" cy="100" r="94" stroke="var(--omnitrix-secondary)" stroke-width="2" stroke-dasharray="22 8 5 8 5 12" stroke-opacity="0.82" />
+                <path d="M100 3 A97 97 0 0 1 168 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M197 100 A97 97 0 0 1 168 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M100 197 A97 97 0 0 1 32 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+                <path d="M3 100 A97 97 0 0 1 32 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+              </g>
+              <g class="omni-gear-ring">
+                <circle cx="100" cy="100" r="85" stroke="var(--omnitrix-primary)" stroke-width="4" stroke-dasharray="3.2 8" stroke-opacity="0.58" />
+                <circle cx="100" cy="100" r="80" stroke="var(--omnitrix-secondary)" stroke-width="1.4" stroke-dasharray="32 14" stroke-opacity="0.65" />
+              </g>
+            </svg>
 
-      <circle cx="100" cy="100" r="97" fill="url(#hudAuraGrad)" />
+            <svg class="omni-layer omni-layer-shaft" aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
+              <defs>
+                <linearGradient id="hudShaftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#070b10" />
+                  <stop offset="22%" stop-color="#2c3e50" />
+                  <stop offset="50%" stop-color="#111a24" />
+                  <stop offset="78%" stop-color="#2c3e50" />
+                  <stop offset="100%" stop-color="#070b10" />
+                </linearGradient>
+              </defs>
+              <path d="M 24,80 L 24,114 A 76,72 0 0 0 176,114 L 176,80 Z" fill="url(#hudShaftGrad)" stroke="#5c748c" stroke-width="2.2" />
+              <path d="M 24,102 A 76,72 0 0 0 176,102" fill="none" stroke="#05080c" stroke-width="4" />
+              <path d="M 24,102 A 76,72 0 0 0 176,102" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2" stroke-dasharray="12 8" />
+              <path d="M 24,114 A 76,72 0 0 0 176,114" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3.5" />
+              <path d="M 38,132 V 156 M 58,148 V 173 M 78,156 V 182 M 100,159 V 185 M 122,156 V 182 M 142,148 V 173 M 162,132 V 156" stroke="var(--omnitrix-primary)" stroke-width="4.5" stroke-linecap="round" />
+              <path d="M 58,150 V 171 M 100,161 V 183 M 142,150 V 171" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
 
-      <g class="omni-holo-ring">
-        <circle cx="100" cy="100" r="94" stroke="var(--omnitrix-secondary)" stroke-width="2" stroke-dasharray="22 8 5 8 5 12" stroke-opacity="0.82" />
-        <path d="M100 3 A97 97 0 0 1 168 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M197 100 A97 97 0 0 1 168 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M100 197 A97 97 0 0 1 32 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-        <path d="M3 100 A97 97 0 0 1 32 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
-      </g>
+            <svg class="omni-layer omni-layer-cap" aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
+              <defs>
+                <linearGradient id="hudBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#5c7288" />
+                  <stop offset="26%" stop-color="#2a3948" />
+                  <stop offset="52%" stop-color="#0d141c" />
+                  <stop offset="78%" stop-color="#243240" />
+                  <stop offset="100%" stop-color="#4c6074" />
+                </linearGradient>
+                <linearGradient id="hudShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0d131a" />
+                  <stop offset="50%" stop-color="#05080c" />
+                  <stop offset="100%" stop-color="#020406" />
+                </linearGradient>
+                <radialGradient id="hudCoreGrad" cx="50%" cy="50%" r="56%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+                  <stop offset="20%" stop-color="var(--omnitrix-primary)" stop-opacity="1" />
+                  <stop offset="74%" stop-color="var(--omnitrix-primary)" stop-opacity="0.94" />
+                  <stop offset="100%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.98" />
+                </radialGradient>
+                <clipPath id="hudFaceClip">
+                  <circle cx="100" cy="100" r="60" />
+                </clipPath>
+              </defs>
 
-      <g class="omni-gear-ring">
-        <circle cx="100" cy="100" r="85" stroke="var(--omnitrix-primary)" stroke-width="4" stroke-dasharray="3.2 8" stroke-opacity="0.58" />
-        <circle cx="100" cy="100" r="80" stroke="var(--omnitrix-secondary)" stroke-width="1.4" stroke-dasharray="32 14" stroke-opacity="0.65" />
-      </g>
+              <g class="omni-dial-rotor">
+                <circle cx="100" cy="100" r="76" fill="url(#hudBezelGrad)" stroke="#6a829a" stroke-width="2.2" />
+                <circle cx="100" cy="100" r="68.5" fill="none" stroke="#060a0f" stroke-width="4.5" />
+                <circle cx="100" cy="100" r="68.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="1.6" stroke-dasharray="14 13" stroke-opacity="0.78" />
 
-      <g class="omni-dial-assembly">
-        <circle cx="100" cy="100" r="76" fill="url(#hudBezelGrad)" stroke="#6a829a" stroke-width="2.2" />
-        <circle cx="100" cy="100" r="68.5" fill="none" stroke="#060a0f" stroke-width="4.5" />
-        <circle cx="100" cy="100" r="68.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="1.6" stroke-dasharray="14 13" stroke-opacity="0.78" />
+                <rect x="92.5" y="20" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+                <rect x="92.5" y="171" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+                <rect x="20" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+                <rect x="171" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
 
-        <rect x="92.5" y="20" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
-        <rect x="92.5" y="171" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
-        <rect x="20" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
-        <rect x="171" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+                <circle cx="100" cy="100" r="62" fill="#030609" stroke="#3d5064" stroke-width="2" />
 
-        <circle cx="100" cy="100" r="62" fill="#030609" stroke="#3d5064" stroke-width="2" />
+                <g clip-path="url(#hudFaceClip)">
+                  <circle cx="100" cy="100" r="61" fill="url(#hudCoreGrad)" />
+                  <circle cx="100" cy="100" r="44" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="5 5" />
+                  <circle cx="100" cy="100" r="24" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
+                  <path d="M100 38 V162 M76 46 L100 78 L124 46 M76 154 L100 122 L124 154" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.4" />
+                  <rect class="omni-scan-beam" x="34" y="93" width="132" height="13" fill="#ffffff" fill-opacity="0.34" />
 
-        <g clip-path="url(#hudFaceClip)">
-          <circle cx="100" cy="100" r="61" fill="url(#hudCoreGrad)" />
-          <circle cx="100" cy="100" r="44" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="5 5" />
-          <circle cx="100" cy="100" r="24" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
-          <path d="M100 38 V162 M76 46 L100 78 L124 46 M76 154 L100 122 L124 154" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.4" />
-          <rect class="omni-scan-beam" x="34" y="93" width="132" height="13" fill="#ffffff" fill-opacity="0.34" />
+                  <g class="omni-wedge-l">
+                    <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+                    <path d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+                    <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+                  </g>
 
-          <g class="omni-wedge-l">
-            <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
-            <path d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
-            <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
-          </g>
+                  <g class="omni-wedge-r">
+                    <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+                    <path d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+                    <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+                  </g>
+                </g>
 
-          <g class="omni-wedge-r">
-            <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
-            <path d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
-            <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
-          </g>
-        </g>
+                <circle cx="100" cy="100" r="60.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2.6" />
 
-        <circle cx="100" cy="100" r="60.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2.6" />
+                <g class="omni-nexus">
+                  <circle cx="100" cy="100" r="8.5" fill="none" stroke="#ffffff" stroke-opacity="0.82" stroke-width="1.6" />
+                  <circle cx="100" cy="100" r="3.8" fill="#ffffff" />
+                </g>
 
-        <g class="omni-nexus">
-          <circle cx="100" cy="100" r="8.5" fill="none" stroke="#ffffff" stroke-opacity="0.82" stroke-width="1.6" />
-          <circle cx="100" cy="100" r="3.8" fill="#ffffff" />
-        </g>
+                <g>
+                  <circle cx="149" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+                  <circle class="omni-node-glow" cx="149" cy="51" r="5" fill="var(--omnitrix-primary)" />
+                  <circle cx="149" cy="51" r="2" fill="#ffffff" />
 
-        <g>
-          <circle cx="149" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
-          <circle class="omni-node-glow" cx="149" cy="51" r="5" fill="var(--omnitrix-primary)" />
-          <circle cx="149" cy="51" r="2" fill="#ffffff" />
+                  <circle cx="149" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+                  <circle class="omni-node-glow" cx="149" cy="149" r="5" fill="var(--omnitrix-primary)" />
+                  <circle cx="149" cy="149" r="2" fill="#ffffff" />
 
-          <circle cx="149" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
-          <circle class="omni-node-glow" cx="149" cy="149" r="5" fill="var(--omnitrix-primary)" />
-          <circle cx="149" cy="149" r="2" fill="#ffffff" />
+                  <circle cx="51" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+                  <circle class="omni-node-glow" cx="51" cy="149" r="5" fill="var(--omnitrix-primary)" />
+                  <circle cx="51" cy="149" r="2" fill="#ffffff" />
 
-          <circle cx="51" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
-          <circle class="omni-node-glow" cx="51" cy="149" r="5" fill="var(--omnitrix-primary)" />
-          <circle cx="51" cy="149" r="2" fill="#ffffff" />
-
-          <circle cx="51" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
-          <circle class="omni-node-glow" cx="51" cy="51" r="5" fill="var(--omnitrix-primary)" />
-          <circle cx="51" cy="51" r="2" fill="#ffffff" />
-        </g>
-      </g>
-    </svg>
+                  <circle cx="51" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+                  <circle class="omni-node-glow" cx="51" cy="51" r="5" fill="var(--omnitrix-primary)" />
+                  <circle cx="51" cy="51" r="2" fill="#ffffff" />
+                </g>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
 
