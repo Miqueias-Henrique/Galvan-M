@@ -1,13 +1,13 @@
-# Portfólio — Miqueias Carvalho
+# Galvan-M — Portfólio de Miqueias Carvalho
 
-Repositório do meu portfólio pessoal e currículo online, publicado via GitHub Pages em:
-**[miqueias-henrique.github.io](https://miqueias-henrique.github.io)**
+Repositório do meu portfólio e currículo interativo, inspirado em **Galvan Prime** (lar dos Galvanianos) e **Galvan B** (lar dos Mecamorfos Galvanianos) — combinado ao **M** de **Miqueias** —, publicado via GitHub Pages em:
+**[miqueias-henrique.github.io/Galvan-M](https://miqueias-henrique.github.io/Galvan-M/)**
 
-Sou estudante de Engenharia de Software (UNIFAN) e atuo como estagiário de desenvolvimento com VB6 e SQL Server, buscando oportunidades como Desenvolvedor de Software Júnior com foco em Backend.
+Sou estudante de Engenharia de Software (UNIFAN) e atuo como estagiário de desenvolvimento com VB6 e SQL Server, buscando oportunidades como Desenvolvedor de Software Júnior com foco em Backend (C#/.NET & SQL Server).
 
 ## Sobre o projeto
 
-Desenvolvi o site usando HTML, CSS e JavaScript puro, sem frameworks ou dependências externas, juntando uma apresentação objetiva para recrutadores com uma identidade visual inspirada no universo de *Ben 10*.
+Desenvolvi o **Galvan-M** usando HTML, CSS e JavaScript puro, sem frameworks ou dependências externas, unindo uma apresentação objetiva para recrutadores com uma interface tática inspirada em tecnologia Galvaniana e Mecamorfa (*Ben 10*).
 
 O site é dividido em quatro seções principais:
 
@@ -18,14 +18,14 @@ O site é dividido em quatro seções principais:
 
 ## Detalhes visuais e interações
 
-- **Dial do Omnitrix**: clicar no retrato ou nos botões de seta alterna entre as seções do portfólio (também funciona pelas teclas `1` a `4`).
-- **Efeito sonoro**: som opcional nas transições, com botão no topo para silenciar (`Som: ON/OFF`).
-- **Temas sorteados**: a cada acesso, a página escolhe aleatoriamente uma entre 10 paletas baseadas em diferentes versões da franquia (*Ben 10 Clássico*, *Alien Force*, *Omniverse*, *Albedo*, *Gwen 10*, *Ben 23*, *Mad Ben*, *Benzarro*, *Nega Ben* e *Bad Ben*).
-- **Fundo animado**: circuito e malha hexagonal desenhados em HTML5 Canvas que reagem ao movimento do mouse.
+- **Dial & Núcleo 3D**: o núcleo do Omnitrix no banner possui mecanismo 3D de elevação ao passar o cursor ou clicar; já o retrato lateral aciona o obturador e alterna entre as seções (também navegável pelas teclas `1` a `4` ou setas).
+- **Micro-reações HUD**: métricas, barras de telemetria, chips de tecnologias e cards respondem individualmente com ondas radiais, recarga de progresso, trava luminosa e feedback sonoro sintetizado (`Som: ON/OFF`).
+- **Temas sorteados**: a cada acesso, a página escolhe aleatoriamente uma entre 11 paletas baseadas em diferentes versões da franquia (*Ben 10 Clássico*, *Alien Force*, *Omniverse*, *Albedo*, *Gwen 10*, *Ben 23*, *Mad Ben*, *Benzarro*, *Nega Ben*, *Bad Ben* e *Ben 10.000*).
+- **Fundo Galvaniano em Canvas**: circuito e malha hexagonal inspirados em Galvan B desenhados em HTML5 Canvas, com Tilt 3D adaptável para desktop e mobile.
 
 ## Arquivos do repositório
 
-- `index.html` — página principal com layout, estilos e scripts.
+- `index.html` — página principal do **Galvan-M** com layout, design tokens, estilos e scripts.
 - `Curriculo_Miqueias_Carvalho.pdf` — versão em PDF do currículo.
 - `icon.png` / `favicon.png` — ícone do site.
 
