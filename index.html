@@ -2498,6 +2498,228 @@
     animation: omniSlamWave 0.86s ease-out;
   }
 
+  .screen-banner.banner-overcharge {
+    border-color: var(--omnitrix-primary);
+    box-shadow: 0 0 32px var(--omnitrix-glow), inset 0 0 28px var(--omnitrix-soft);
+  }
+
+  .nav-brand:hover .nav-logo {
+    transform: scale(1.08);
+    box-shadow: 0 0 18px var(--omnitrix-primary);
+  }
+
+  .nav-brand:hover .brand-logo-wrap::before {
+    animation-duration: 4s;
+    border-color: var(--omnitrix-secondary);
+  }
+
+  .portrait-stage .outer-cyber-ring,
+  .portrait-stage .inner-cyber-ring,
+  .omnitrix-ring .dot {
+    transition: transform 0.32s var(--ease-spring), filter 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .portrait-stage:hover .outer-cyber-ring {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 10px var(--omnitrix-primary));
+  }
+
+  .portrait-stage:hover .inner-cyber-ring {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 8px var(--omnitrix-secondary));
+  }
+
+  .portrait-container:hover .omnitrix-ring .top { transform: translateX(-50%) scale(1.22); }
+  .portrait-container:hover .omnitrix-ring .bottom { transform: translateX(-50%) scale(1.22); }
+  .portrait-container:hover .omnitrix-ring .left { transform: translateY(-50%) scale(1.22); }
+  .portrait-container:hover .omnitrix-ring .right { transform: translateY(-50%) scale(1.22); }
+
+  .sidebar-info-row {
+    position: relative;
+    padding: 4px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.22s var(--ease-spring), background 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .sidebar-info-row:hover {
+    transform: translateX(4px);
+    background: var(--omnitrix-soft);
+    box-shadow: inset 3px 0 0 var(--omnitrix-primary);
+  }
+
+  .sidebar-info-row:hover strong {
+    color: var(--omnitrix-primary);
+  }
+
+  .cta-trust-seal {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.22s var(--ease-spring), border-color 0.22s ease, background 0.22s ease;
+  }
+
+  .cta-trust-seal:hover {
+    transform: translateY(-2px);
+    border-color: var(--omnitrix-primary);
+    background: var(--omnitrix-soft);
+  }
+
+  .highlight-box {
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .highlight-anchor {
+    transition: transform 0.28s var(--ease-spring), text-shadow 0.28s ease;
+    transform-origin: left center;
+  }
+
+  .highlight-box:hover .highlight-anchor {
+    transform: scale(1.08) translateX(3px);
+    text-shadow: 0 0 24px var(--omnitrix-primary);
+  }
+
+  .telemetry-row {
+    position: relative;
+    padding: 5px 7px;
+    margin: 0 -7px;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.22s var(--ease-spring), background 0.22s ease;
+  }
+
+  .telemetry-row:hover {
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .telemetry-fill,
+  .degree-progress span {
+    transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .telemetry-row:hover .telemetry-fill,
+  .training-card:hover .degree-progress span {
+    filter: brightness(1.28);
+    box-shadow: 0 0 16px var(--omnitrix-primary);
+  }
+
+  .trait-card,
+  .timeline-item,
+  .tech-module,
+  .training-card,
+  .lang-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .trait-card:hover {
+    transform: translateX(5px);
+    border-color: var(--omnitrix-primary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), -3px 0 12px var(--omnitrix-glow);
+  }
+
+  .trait-card:hover .trait-info strong {
+    color: var(--omnitrix-primary);
+  }
+
+  .timeline-item:hover,
+  .tech-module:hover,
+  .training-card:hover,
+  .lang-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--omnitrix-primary);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 16px var(--omnitrix-soft);
+  }
+
+  .timeline-item:hover .mission-status {
+    box-shadow: 0 0 12px var(--omnitrix-glow);
+  }
+
+  .mission-bullets li {
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .mission-bullets li:hover {
+    transform: translateX(4px);
+    color: var(--text-white);
+  }
+
+  .mission-bullets li:hover::before {
+    text-shadow: 0 0 10px var(--omnitrix-primary);
+  }
+
+  .skill-chip,
+  .mission-stack-tags span,
+  .repo-tech-pills span,
+  .course-tag,
+  .panel-tag,
+  .repo-badge {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.22s var(--ease-spring), border-color 0.22s ease, background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .skill-chip:hover,
+  .mission-stack-tags span:hover,
+  .repo-tech-pills span:hover,
+  .course-tag:hover,
+  .panel-tag:hover,
+  .repo-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--omnitrix-primary);
+    background: var(--omnitrix-soft);
+    color: var(--text-white);
+    box-shadow: 0 4px 12px var(--omnitrix-soft);
+  }
+
+  .skill-chip.chip-locked,
+  .mission-stack-tags span.chip-locked,
+  .repo-tech-pills span.chip-locked,
+  .course-tag.chip-locked,
+  .panel-tag.chip-locked,
+  .repo-badge.chip-locked {
+    border-color: var(--omnitrix-primary);
+    background: var(--omnitrix-soft);
+    color: var(--omnitrix-primary);
+    box-shadow: 0 0 14px var(--omnitrix-glow), inset 0 0 8px var(--omnitrix-soft);
+  }
+
+  @keyframes omniHitPulse {
+    0% { transform: scale(1); }
+    35% { transform: scale(0.975); box-shadow: 0 0 22px var(--omnitrix-glow), inset 0 0 14px var(--omnitrix-soft); }
+    75% { transform: scale(1.015); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes omniRippleExpand {
+    0% { transform: translate(-50%, -50%) scale(0.15); opacity: 0.78; }
+    100% { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+  }
+
+  .omni-react-hit {
+    animation: omniHitPulse 0.42s var(--ease-spring);
+  }
+
+  .omni-ripple {
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 6;
+    background: radial-gradient(circle, var(--omnitrix-primary) 0%, transparent 70%);
+    border: 1.5px solid var(--omnitrix-primary);
+    animation: omniRippleExpand 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
   .section-kicker::before {
     content: "⬢ ";
     color: var(--omnitrix-secondary);
@@ -3044,7 +3266,7 @@
           <h2 class="screen-banner-title" id="bannerTitle">Backend Júnior com Experiência Real em Produção</h2>
           <p class="screen-banner-desc" id="bannerDesc">Atuação diária mantendo sistemas de múltiplas farmácias na Zetti (SQL Server &amp; VB6) + 8 projetos práticos no GitHub.</p>
         </div>
-        <div class="banner-emblem" id="bannerEmblem" onclick="cycleNextTab()" title="Passe o cursor ou clique para levantar o núcleo do Omnitrix" aria-hidden="true">
+        <div class="banner-emblem" id="bannerEmblem" role="button" tabindex="0" aria-label="Levantar e acionar o núcleo do Omnitrix" onclick="interactBannerOmnitrix(event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();interactBannerOmnitrix(event);}" title="Passe o cursor ou clique para levantar o núcleo do Omnitrix">
           <div class="omni-stage-3d">
             <svg class="omni-layer omni-layer-base" aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
               <defs>
@@ -4816,12 +5038,137 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = document.documentElement.classList.contains('is-mobile') || (window.matchMedia && window.matchMedia('(pointer: coarse), (max-width: 768px)').matches);
     const bannerEmblem = document.getElementById('bannerEmblem');
-    function pulseBannerOmnitrix() {
-      if (!bannerEmblem || reduceMotion) return;
-      bannerEmblem.classList.remove('dial-twist');
-      void bannerEmblem.offsetWidth;
-      bannerEmblem.classList.add('dial-twist');
+    const screenBanner = document.getElementById('screenBanner');
+    let audioCtx = null;
+
+    function playHudTick(freqStart, freqEnd, dur) {
+      if (!sfxEnabled) return;
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!audioCtx) audioCtx = new AC();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const now = audioCtx.currentTime;
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freqStart || 740, now);
+        osc.frequency.exponentialRampToValueAtTime(freqEnd || 1180, now + (dur || 0.055));
+        gain.gain.setValueAtTime(0.038, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + (dur || 0.055));
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + (dur || 0.055));
+      } catch (err) {}
     }
+
+    function spawnRipple(el, clientX, clientY) {
+      if (!el || reduceMotion) return;
+      const r = el.getBoundingClientRect();
+      const x = (typeof clientX === 'number' && clientX > 0) ? (clientX - r.left) : (r.width / 2);
+      const y = (typeof clientY === 'number' && clientY > 0) ? (clientY - r.top) : (r.height / 2);
+      const rip = document.createElement('span');
+      rip.className = 'omni-ripple';
+      rip.style.left = x + 'px';
+      rip.style.top = y + 'px';
+      el.appendChild(rip);
+      rip.addEventListener('animationend', () => rip.remove());
+      el.classList.remove('omni-react-hit');
+      void el.offsetWidth;
+      el.classList.add('omni-react-hit');
+      setTimeout(() => el.classList.remove('omni-react-hit'), 440);
+    }
+
+    window.interactBannerOmnitrix = function(e) {
+      if (e) e.stopPropagation();
+      playSfx();
+      if (!bannerEmblem) return;
+      if (!reduceMotion) {
+        bannerEmblem.classList.remove('dial-twist');
+        void bannerEmblem.offsetWidth;
+        bannerEmblem.classList.add('dial-twist');
+        if (screenBanner) {
+          screenBanner.classList.add('banner-overcharge');
+          setTimeout(() => screenBanner.classList.remove('banner-overcharge'), 860);
+        }
+        const b = document.getElementById('omniBurst');
+        const fl = document.getElementById('omniFlash');
+        const rect = bannerEmblem.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        if (b) {
+          b.style.setProperty('--bx', cx + 'px');
+          b.style.setProperty('--by', cy + 'px');
+          b.classList.remove('go');
+          void b.offsetWidth;
+          b.classList.add('go');
+        }
+        if (fl) {
+          fl.style.setProperty('--fx', cx + 'px');
+          fl.style.setProperty('--fy', cy + 'px');
+          fl.classList.remove('go');
+          void fl.offsetWidth;
+          fl.classList.add('go');
+        }
+      }
+      const curMeta = tabMeta[tabOrder[currentTabIndex]];
+      const bTitle = document.getElementById('bannerTitle');
+      if (curMeta && bTitle) scramble(bTitle, curMeta.title, 480);
+    };
+
+    document.querySelectorAll('.highlight-box').forEach(box => {
+      box.addEventListener('click', (e) => {
+        spawnRipple(box, e.clientX, e.clientY);
+        playHudTick(680, 1280, 0.065);
+        const anchor = box.querySelector('.highlight-anchor');
+        if (!anchor) return;
+        if (anchor.hasAttribute('data-count')) countUp(anchor);
+        else if (anchor.hasAttribute('data-scramble')) scramble(anchor, anchor.getAttribute('data-scramble'), 620);
+      });
+    });
+
+    document.querySelectorAll('.telemetry-row').forEach(row => {
+      row.addEventListener('click', (e) => {
+        spawnRipple(row, e.clientX, e.clientY);
+        playHudTick(760, 1360, 0.06);
+        const fill = row.querySelector('.telemetry-fill');
+        if (fill && !reduceMotion) {
+          const targetW = fill.getAttribute('data-w') || fill.style.width;
+          fill.setAttribute('data-w', targetW);
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          void fill.offsetWidth;
+          fill.style.transition = 'width 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease, box-shadow 0.25s ease';
+          fill.style.width = targetW;
+        }
+      });
+    });
+
+    document.querySelectorAll('.skill-chip, .mission-stack-tags span, .repo-tech-pills span, .course-tag, .panel-tag, .repo-badge').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        e.stopPropagation();
+        chip.classList.toggle('chip-locked');
+        spawnRipple(chip, e.clientX, e.clientY);
+        playHudTick(880, 1480, 0.045);
+      });
+    });
+
+    document.querySelectorAll('.trait-card, .timeline-item, .tech-module, .training-card, .lang-item, .sidebar-info-row, .cta-trust-seal, .mini-proj-card, .repo-card, .comm-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a, button')) return;
+        spawnRipple(card, e.clientX, e.clientY);
+        playHudTick(620, 1080, 0.055);
+        const degBar = card.querySelector('.degree-progress span');
+        if (degBar && !reduceMotion) {
+          degBar.style.transition = 'none';
+          degBar.style.width = '0%';
+          void degBar.offsetWidth;
+          degBar.style.transition = 'width 0.7s cubic-bezier(0.22, 1, 0.36, 1)';
+          degBar.style.width = '68%';
+        }
+      });
+    });
 
     const glyphUp = 'ABCDEFHKLNPRSTUXZ';
     const glyphLow = 'acenorsuvxz';
@@ -4919,7 +5266,6 @@
       const meta = tabMeta[tabId];
       if (meta) scramble(document.getElementById('bannerTitle'), meta.title, 560);
       fireBurst();
-      pulseBannerOmnitrix();
       if (tabId === 'dossie') setTimeout(runAnchors, 140);
     };
 
