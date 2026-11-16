@@ -1989,11 +1989,66 @@
   @keyframes revealUp { from { opacity: 0; transform: translateY(18px) scale(0.985); } to { opacity: 1; transform: none; } }
   @keyframes burst { 0% { opacity: 0.95; transform: translate(var(--bx), var(--by)) scale(0.4); } 100% { opacity: 0; transform: translate(var(--bx), var(--by)) scale(38); } }
   @keyframes flash { 0% { opacity: 0.6; } 100% { opacity: 0; } }
-  @keyframes bootOut { to { opacity: 0; visibility: hidden; transform: scale(1.06); } }
-  @keyframes bootDraw { to { stroke-dashoffset: 0; } }
-  @keyframes bootFill { 0%, 55% { fill-opacity: 0; } 100% { fill-opacity: 0.9; } }
+  @keyframes bootOut { to { opacity: 0; visibility: hidden; transform: scale(1.12); } }
   @keyframes bootBar { from { width: 0; } to { width: 100%; } }
-  @keyframes bootGlow { 0%, 100% { filter: drop-shadow(0 0 10px var(--omnitrix-glow)); } 50% { filter: drop-shadow(0 0 34px var(--omnitrix-primary)); } }
+  @keyframes bootGlow {
+    0%, 100% { filter: drop-shadow(0 0 14px var(--omnitrix-glow)) drop-shadow(0 0 30px var(--omnitrix-soft)); }
+    50% { filter: drop-shadow(0 0 28px var(--omnitrix-primary)) drop-shadow(0 0 56px var(--omnitrix-glow)); }
+  }
+  @keyframes bootDialPop {
+    0% { transform: scale(0.75) rotate(-90deg); opacity: 0.2; }
+    38% { transform: scale(1.07) rotate(4deg); opacity: 1; }
+    52% { transform: scale(0.98) rotate(0deg); }
+    68% { transform: scale(1.03) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  @keyframes bootWedgeL {
+    0% { transform: translateX(-16px); }
+    36% { transform: translateX(1.5px); }
+    50%, 100% { transform: translateX(0); }
+  }
+  @keyframes bootWedgeR {
+    0% { transform: translateX(16px); }
+    36% { transform: translateX(-1.5px); }
+    50%, 100% { transform: translateX(0); }
+  }
+  @keyframes bootShockwave {
+    0%, 20% { r: 60px; opacity: 0; stroke-width: 6px; }
+    32% { opacity: 0.95; }
+    100% { r: 99px; opacity: 0; stroke-width: 0.8px; }
+  }
+  @keyframes omniScanSweep {
+    0% { transform: translateY(-68px); opacity: 0; }
+    20% { opacity: 0.72; }
+    80% { opacity: 0.72; }
+    100% { transform: translateY(68px); opacity: 0; }
+  }
+  @keyframes omniNodePulse {
+    0%, 100% { opacity: 0.8; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.18); }
+  }
+  @keyframes omniNexusPulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.85; }
+    50% { transform: scale(1.18); opacity: 1; }
+  }
+  @keyframes hudDialTwist {
+    0% { transform: rotate(0deg) scale(1); }
+    35% { transform: rotate(90deg) scale(1.08); }
+    72% { transform: rotate(84deg) scale(0.98); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+  @keyframes hudWedgeClampL {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-12px); }
+    65% { transform: translateX(1.5px); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes hudWedgeClampR {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(12px); }
+    65% { transform: translateX(-1.5px); }
+    100% { transform: translateX(0); }
+  }
   @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
   ::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -2074,38 +2129,59 @@
   #bootSplash.done { animation: bootOut 0.35s ease forwards; }
 
   .boot-core {
-    width: 170px;
-    height: 170px;
+    width: 204px;
+    height: 204px;
+    position: relative;
     animation: bootGlow 1.6s ease-in-out infinite;
   }
 
-  .boot-core svg { width: 100%; height: 100%; }
-
-  .boot-ring {
-    stroke: var(--omnitrix-primary);
-    stroke-width: 5;
-    fill: none;
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    animation: bootDraw 1.1s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+  .boot-core svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
 
-  .boot-ring.r2 {
-    stroke: var(--omnitrix-secondary);
-    stroke-width: 2;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation-delay: 0.2s;
+  .boot-core .omni-holo-ring {
+    transform-origin: 100px 100px;
+    animation: spinSlow 10s linear infinite;
   }
 
-  .boot-hour {
-    stroke: var(--omnitrix-primary);
-    stroke-width: 3;
-    fill: var(--omnitrix-primary);
-    fill-opacity: 0;
-    stroke-dasharray: 320;
-    stroke-dashoffset: 320;
-    animation: bootDraw 0.9s ease 0.45s forwards, bootFill 1.5s ease forwards;
+  .boot-core .omni-gear-ring {
+    transform-origin: 100px 100px;
+    animation: spinReverseSlow 7s linear infinite;
+  }
+
+  .boot-core .omni-dial-assembly {
+    transform-origin: 100px 100px;
+    animation: bootDialPop 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .boot-core .omni-wedge-l {
+    animation: bootWedgeL 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .boot-core .omni-wedge-r {
+    animation: bootWedgeR 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .boot-core .boot-shockwave {
+    animation: bootShockwave 1.1s ease-out infinite;
+  }
+
+  .omni-scan-beam {
+    transform-origin: 100px 100px;
+    animation: omniScanSweep 2.4s ease-in-out infinite;
+  }
+
+  .omni-node-glow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: omniNodePulse 1.8s ease-in-out infinite;
+  }
+
+  .omni-nexus {
+    transform-origin: 100px 100px;
+    animation: omniNexusPulse 1.6s ease-in-out infinite;
   }
 
   .boot-kicker {
@@ -2330,39 +2406,6 @@
     min-width: 0;
   }
 
-  .banner-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-
-  .banner-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 999px;
-    border: 1px solid var(--omnitrix-border-sec);
-    background: rgba(0, 0, 0, 0.45);
-    color: var(--text-body);
-  }
-
-  .banner-chip b {
-    color: var(--omnitrix-primary);
-    font-weight: 700;
-  }
-
-  .banner-chip .pulse-dot {
-    width: 6px;
-    height: 6px;
-    margin-right: 0;
-  }
-
   .screen-banner-title {
     font-size: 26px;
     line-height: 1.2;
@@ -2376,21 +2419,33 @@
   .banner-emblem {
     position: relative;
     z-index: 2;
-    width: 104px;
-    height: 104px;
+    width: 112px;
+    height: 112px;
     flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 50%;
     animation: floatY 4s ease-in-out infinite;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .banner-emblem:hover {
+    transform: scale(1.06);
   }
 
   .banner-emblem svg {
     width: 100%;
     height: 100%;
     overflow: visible;
-    filter: drop-shadow(0 0 12px var(--omnitrix-glow));
+    filter: drop-shadow(0 0 14px var(--omnitrix-glow));
   }
 
-  .banner-emblem .spin-a { transform-origin: 60px 60px; animation: spinSlow 14s linear infinite; }
-  .banner-emblem .spin-b { transform-origin: 60px 60px; animation: spinReverseSlow 9s linear infinite; }
+  .banner-emblem .omni-holo-ring { transform-origin: 100px 100px; animation: spinSlow 14s linear infinite; }
+  .banner-emblem .omni-gear-ring { transform-origin: 100px 100px; animation: spinReverseSlow 9s linear infinite; }
+  .banner-emblem .omni-dial-assembly { transform-origin: 100px 100px; transition: transform 0.45s var(--ease-spring); }
+  .banner-emblem:hover .omni-dial-assembly { transform: rotate(45deg); }
+  .banner-emblem.dial-twist .omni-dial-assembly { animation: hudDialTwist 0.65s var(--ease-spring); }
+  .banner-emblem.dial-twist .omni-wedge-l { animation: hudWedgeClampL 0.55s var(--ease-out); }
+  .banner-emblem.dial-twist .omni-wedge-r { animation: hudWedgeClampR 0.55s var(--ease-out); }
 
   .section-kicker::before {
     content: "⬢ ";
@@ -2499,9 +2554,9 @@
   }
 
   @media (max-width: 640px) {
-    .banner-emblem { display: none; }
-    .screen-banner-title { font-size: 21px; }
-    .screen-banner { min-height: 0; padding: 18px; }
+    .banner-emblem { width: 74px; height: 74px; }
+    .screen-banner-title { font-size: 20px; }
+    .screen-banner { min-height: 0; padding: 16px 18px; flex-wrap: nowrap; }
     .highlight-anchor { font-size: 28px; }
   }
 
@@ -2684,16 +2739,114 @@
 <div id="bootSplash" onclick="this.classList.add('done')">
   <div class="boot-core" aria-hidden="true">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
-      <circle class="boot-ring" cx="100" cy="100" r="92" />
-      <circle class="boot-ring r2" cx="100" cy="100" r="78" />
-      <polygon class="boot-hour" points="54,44 146,44 100,100" />
-      <polygon class="boot-hour" points="54,156 146,156 100,100" />
+      <defs>
+        <radialGradient id="bootAuraGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--omnitrix-primary)" stop-opacity="0.42" />
+          <stop offset="66%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.14" />
+          <stop offset="100%" stop-color="var(--omnitrix-primary)" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="bootBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5c7288" />
+          <stop offset="26%" stop-color="#2a3948" />
+          <stop offset="52%" stop-color="#0d141c" />
+          <stop offset="78%" stop-color="#243240" />
+          <stop offset="100%" stop-color="#4c6074" />
+        </linearGradient>
+        <linearGradient id="bootShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0d131a" />
+          <stop offset="50%" stop-color="#05080c" />
+          <stop offset="100%" stop-color="#020406" />
+        </linearGradient>
+        <radialGradient id="bootCoreGrad" cx="50%" cy="50%" r="56%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+          <stop offset="20%" stop-color="var(--omnitrix-primary)" stop-opacity="1" />
+          <stop offset="74%" stop-color="var(--omnitrix-primary)" stop-opacity="0.94" />
+          <stop offset="100%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.98" />
+        </radialGradient>
+        <clipPath id="bootFaceClip">
+          <circle cx="100" cy="100" r="60" />
+        </clipPath>
+      </defs>
+
+      <circle cx="100" cy="100" r="97" fill="url(#bootAuraGrad)" />
+      <circle class="boot-shockwave" cx="100" cy="100" r="60" stroke="var(--omnitrix-primary)" fill="none" />
+
+      <g class="omni-holo-ring">
+        <circle cx="100" cy="100" r="94" stroke="var(--omnitrix-secondary)" stroke-width="2" stroke-dasharray="22 8 5 8 5 12" stroke-opacity="0.82" />
+        <path d="M100 3 A97 97 0 0 1 168 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M197 100 A97 97 0 0 1 168 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M100 197 A97 97 0 0 1 32 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M3 100 A97 97 0 0 1 32 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+      </g>
+
+      <g class="omni-gear-ring">
+        <circle cx="100" cy="100" r="85" stroke="var(--omnitrix-primary)" stroke-width="4" stroke-dasharray="3.2 8" stroke-opacity="0.58" />
+        <circle cx="100" cy="100" r="80" stroke="var(--omnitrix-secondary)" stroke-width="1.4" stroke-dasharray="32 14" stroke-opacity="0.65" />
+      </g>
+
+      <g class="omni-dial-assembly">
+        <circle cx="100" cy="100" r="76" fill="url(#bootBezelGrad)" stroke="#6a829a" stroke-width="2.2" />
+        <circle cx="100" cy="100" r="68.5" fill="none" stroke="#060a0f" stroke-width="4.5" />
+        <circle cx="100" cy="100" r="68.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="1.6" stroke-dasharray="14 13" stroke-opacity="0.78" />
+
+        <rect x="92.5" y="20" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="92.5" y="171" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="20" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="171" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+
+        <circle cx="100" cy="100" r="62" fill="#030609" stroke="#3d5064" stroke-width="2" />
+
+        <g clip-path="url(#bootFaceClip)">
+          <circle cx="100" cy="100" r="61" fill="url(#bootCoreGrad)" />
+          <circle cx="100" cy="100" r="44" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="5 5" />
+          <circle cx="100" cy="100" r="24" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
+          <path d="M100 38 V162 M76 46 L100 78 L124 46 M76 154 L100 122 L124 154" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.4" />
+          <rect class="omni-scan-beam" x="34" y="93" width="132" height="13" fill="#ffffff" fill-opacity="0.34" />
+
+          <g class="omni-wedge-l">
+            <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+            <path d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+            <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+          </g>
+
+          <g class="omni-wedge-r">
+            <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#bootShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+            <path d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+            <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+          </g>
+        </g>
+
+        <circle cx="100" cy="100" r="60.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2.6" />
+
+        <g class="omni-nexus">
+          <circle cx="100" cy="100" r="8.5" fill="none" stroke="#ffffff" stroke-opacity="0.82" stroke-width="1.6" />
+          <circle cx="100" cy="100" r="3.8" fill="#ffffff" />
+        </g>
+
+        <g>
+          <circle cx="149" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="149" cy="51" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="149" cy="51" r="2" fill="#ffffff" />
+
+          <circle cx="149" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="149" cy="149" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="149" cy="149" r="2" fill="#ffffff" />
+
+          <circle cx="51" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="51" cy="149" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="51" cy="149" r="2" fill="#ffffff" />
+
+          <circle cx="51" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="51" cy="51" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="51" cy="51" r="2" fill="#ffffff" />
+        </g>
+      </g>
     </svg>
   </div>
-  <p class="boot-kicker">OMNITRIX // MASTER CONTROL</p>
+  <p class="boot-kicker">ENGENHARIA DE SOFTWARE // PORTFÓLIO</p>
   <p class="boot-title">MIQUEIAS CARVALHO</p>
   <div class="boot-bar" aria-hidden="true"><span></span></div>
-  <p class="boot-status" id="bootStatus">SINCRONIZANDO DNA DO HOSPEDEIRO...</p>
+  <p class="boot-status" id="bootStatus">SINCRONIZANDO NÚCLEO OMNITRIX...</p>
   <button type="button" class="boot-skip">Pular intro</button>
 </div>
 
@@ -2776,10 +2929,10 @@
 
           <div class="omnitrix-shutter" id="omnitrixShutter">
             <svg aria-hidden="true" focusable="false" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <polygon points="0,0 32,50 0,100" fill="#050b07"/>
-              <polygon points="100,0 68,50 100,100" fill="#050b07"/>
-              <polygon points="0,0 32,50 0,100" stroke="currentColor" stroke-width="2.5" fill="none" style="color: var(--omnitrix-primary);"/>
-              <polygon points="100,0 68,50 100,100" stroke="currentColor" stroke-width="2.5" fill="none" style="color: var(--omnitrix-primary);"/>
+              <path d="M 0,0 L 28,10 Q 38,34 45,50 Q 38,66 28,90 L 0,100 Z" fill="#05080c" stroke="#2c3e50" stroke-width="2" />
+              <path d="M 100,0 L 72,10 Q 62,34 55,50 Q 62,66 72,90 L 100,100 Z" fill="#05080c" stroke="#2c3e50" stroke-width="2" />
+              <path d="M 28,10 Q 38,34 45,50 Q 38,66 28,90" fill="none" stroke="currentColor" stroke-width="2.8" style="color: var(--omnitrix-primary);" />
+              <path d="M 72,10 Q 62,34 55,50 Q 62,66 72,90" fill="none" stroke="currentColor" stroke-width="2.8" style="color: var(--omnitrix-primary);" />
             </svg>
           </div>
 
@@ -2851,26 +3004,114 @@
 
       <div class="screen-banner" id="screenBanner">
         <div class="banner-copy">
-          <div class="banner-chips">
-            <span class="banner-chip"><span class="pulse-dot"></span>Omnitrix: <b id="paletteName">Ben 10 Clássico</b></span>
-            <span class="banner-chip">Master Control: <b>Ativo</b></span>
-          </div>
           <p class="screen-banner-kicker" id="bannerKicker">SEÇÃO 01 DE 04 // DISPONÍVEL EM GOIÂNIA, GO OU REMOTO</p>
           <h2 class="screen-banner-title" id="bannerTitle">Backend Júnior com Experiência Real em Produção</h2>
           <p class="screen-banner-desc" id="bannerDesc">Atuação diária mantendo sistemas de múltiplas farmácias na Zetti (SQL Server &amp; VB6) + 8 projetos práticos no GitHub.</p>
         </div>
-        <div class="banner-emblem" aria-hidden="true">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 120 120" fill="none">
-            <g class="spin-a">
-              <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="2" stroke-dasharray="22 8 4 8" style="color: var(--omnitrix-secondary);" />
-            </g>
-            <g class="spin-b">
-              <circle cx="60" cy="60" r="47" stroke="currentColor" stroke-width="3" stroke-dasharray="40 14" style="color: var(--omnitrix-primary);" />
-            </g>
-            <circle cx="60" cy="60" r="38" fill="#05080a" stroke="currentColor" stroke-width="3" style="color: var(--omnitrix-primary);" />
-            <polygon points="36,34 84,34 60,60" fill="currentColor" style="color: var(--omnitrix-primary);" />
-            <polygon points="36,86 84,86 60,60" fill="currentColor" style="color: var(--omnitrix-primary);" />
-          </svg>
+        <div class="banner-emblem" id="bannerEmblem" onclick="cycleNextTab()" title="Clique para girar o Omnitrix e avançar de seção" aria-hidden="true">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 200 200" fill="none">
+      <defs>
+        <radialGradient id="hudAuraGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--omnitrix-primary)" stop-opacity="0.42" />
+          <stop offset="66%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.14" />
+          <stop offset="100%" stop-color="var(--omnitrix-primary)" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="hudBezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5c7288" />
+          <stop offset="26%" stop-color="#2a3948" />
+          <stop offset="52%" stop-color="#0d141c" />
+          <stop offset="78%" stop-color="#243240" />
+          <stop offset="100%" stop-color="#4c6074" />
+        </linearGradient>
+        <linearGradient id="hudShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0d131a" />
+          <stop offset="50%" stop-color="#05080c" />
+          <stop offset="100%" stop-color="#020406" />
+        </linearGradient>
+        <radialGradient id="hudCoreGrad" cx="50%" cy="50%" r="56%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+          <stop offset="20%" stop-color="var(--omnitrix-primary)" stop-opacity="1" />
+          <stop offset="74%" stop-color="var(--omnitrix-primary)" stop-opacity="0.94" />
+          <stop offset="100%" stop-color="var(--omnitrix-secondary)" stop-opacity="0.98" />
+        </radialGradient>
+        <clipPath id="hudFaceClip">
+          <circle cx="100" cy="100" r="60" />
+        </clipPath>
+      </defs>
+
+      <circle cx="100" cy="100" r="97" fill="url(#hudAuraGrad)" />
+
+      <g class="omni-holo-ring">
+        <circle cx="100" cy="100" r="94" stroke="var(--omnitrix-secondary)" stroke-width="2" stroke-dasharray="22 8 5 8 5 12" stroke-opacity="0.82" />
+        <path d="M100 3 A97 97 0 0 1 168 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M197 100 A97 97 0 0 1 168 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M100 197 A97 97 0 0 1 32 168" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+        <path d="M3 100 A97 97 0 0 1 32 32" stroke="var(--omnitrix-primary)" stroke-width="2.6" stroke-linecap="round" />
+      </g>
+
+      <g class="omni-gear-ring">
+        <circle cx="100" cy="100" r="85" stroke="var(--omnitrix-primary)" stroke-width="4" stroke-dasharray="3.2 8" stroke-opacity="0.58" />
+        <circle cx="100" cy="100" r="80" stroke="var(--omnitrix-secondary)" stroke-width="1.4" stroke-dasharray="32 14" stroke-opacity="0.65" />
+      </g>
+
+      <g class="omni-dial-assembly">
+        <circle cx="100" cy="100" r="76" fill="url(#hudBezelGrad)" stroke="#6a829a" stroke-width="2.2" />
+        <circle cx="100" cy="100" r="68.5" fill="none" stroke="#060a0f" stroke-width="4.5" />
+        <circle cx="100" cy="100" r="68.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="1.6" stroke-dasharray="14 13" stroke-opacity="0.78" />
+
+        <rect x="92.5" y="20" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="92.5" y="171" width="15" height="9" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="20" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+        <rect x="171" y="92.5" width="9" height="15" rx="2.5" fill="#18222c" stroke="#6a829a" stroke-width="1.3" />
+
+        <circle cx="100" cy="100" r="62" fill="#030609" stroke="#3d5064" stroke-width="2" />
+
+        <g clip-path="url(#hudFaceClip)">
+          <circle cx="100" cy="100" r="61" fill="url(#hudCoreGrad)" />
+          <circle cx="100" cy="100" r="44" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="5 5" />
+          <circle cx="100" cy="100" r="24" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1" />
+          <path d="M100 38 V162 M76 46 L100 78 L124 46 M76 154 L100 122 L124 154" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.4" />
+          <rect class="omni-scan-beam" x="34" y="93" width="132" height="13" fill="#ffffff" fill-opacity="0.34" />
+
+          <g class="omni-wedge-l">
+            <path d="M 18,22 L 62,42 Q 79,73 90,100 Q 79,127 62,158 L 18,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+            <path d="M 62,42 Q 79,73 90,100 Q 79,127 62,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+            <path d="M 38,78 L 69,92 M 38,122 L 69,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+          </g>
+
+          <g class="omni-wedge-r">
+            <path d="M 182,22 L 138,42 Q 121,73 110,100 Q 121,127 138,158 L 182,178 Z" fill="url(#hudShieldGrad)" stroke="#2c3e50" stroke-width="4" stroke-linejoin="round" />
+            <path d="M 138,42 Q 121,73 110,100 Q 121,127 138,158" fill="none" stroke="var(--omnitrix-primary)" stroke-width="3" stroke-linecap="round" />
+            <path d="M 162,78 L 131,92 M 162,122 L 131,108" stroke="#243444" stroke-width="2.2" stroke-linecap="round" />
+          </g>
+        </g>
+
+        <circle cx="100" cy="100" r="60.5" fill="none" stroke="var(--omnitrix-primary)" stroke-width="2.6" />
+
+        <g class="omni-nexus">
+          <circle cx="100" cy="100" r="8.5" fill="none" stroke="#ffffff" stroke-opacity="0.82" stroke-width="1.6" />
+          <circle cx="100" cy="100" r="3.8" fill="#ffffff" />
+        </g>
+
+        <g>
+          <circle cx="149" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="149" cy="51" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="149" cy="51" r="2" fill="#ffffff" />
+
+          <circle cx="149" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="149" cy="149" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="149" cy="149" r="2" fill="#ffffff" />
+
+          <circle cx="51" cy="149" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="51" cy="149" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="51" cy="149" r="2" fill="#ffffff" />
+
+          <circle cx="51" cy="51" r="9" fill="#0d141c" stroke="#738da6" stroke-width="2.2" />
+          <circle class="omni-node-glow" cx="51" cy="51" r="5" fill="var(--omnitrix-primary)" />
+          <circle cx="51" cy="51" r="2" fill="#ffffff" />
+        </g>
+      </g>
+    </svg>
         </div>
       </div>
 
@@ -4276,35 +4517,46 @@
 
       ctx.save();
       ctx.rotate(Math.sin(angle * 0.5) * 0.08 * dirMult);
-      const rInner = baseR * 0.50;
+      const rInner = baseR * 0.52;
+      const rBezel = baseR * 0.62;
       ctx.strokeStyle = colors.sec;
-      ctx.globalAlpha = 0.22;
+      ctx.globalAlpha = 0.20;
       ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.arc(0, 0, rBezel, 0, Math.PI * 2);
+      ctx.stroke();
+
       ctx.beginPath();
       ctx.arc(0, 0, rInner, 0, Math.PI * 2);
       ctx.stroke();
 
+      const waist = rInner * 0.17;
+      const aSpan = 0.62;
       ctx.fillStyle = colors.main;
       ctx.strokeStyle = colors.main;
-      ctx.globalAlpha = 0.07;
       ctx.beginPath();
-      ctx.moveTo(-rInner * 0.68, -rInner * 0.72);
-      ctx.lineTo(rInner * 0.68, -rInner * 0.72);
-      ctx.lineTo(0, 0);
+      ctx.arc(0, 0, rInner, -Math.PI / 2 - aSpan, -Math.PI / 2 + aSpan, false);
+      ctx.quadraticCurveTo(rInner * 0.34, -rInner * 0.36, waist, 0);
+      ctx.quadraticCurveTo(rInner * 0.34, rInner * 0.36, Math.cos(Math.PI / 2 - aSpan) * rInner, Math.sin(Math.PI / 2 - aSpan) * rInner);
+      ctx.arc(0, 0, rInner, Math.PI / 2 - aSpan, Math.PI / 2 + aSpan, false);
+      ctx.quadraticCurveTo(-rInner * 0.34, rInner * 0.36, -waist, 0);
+      ctx.quadraticCurveTo(-rInner * 0.34, -rInner * 0.36, Math.cos(-Math.PI / 2 - aSpan) * rInner, Math.sin(-Math.PI / 2 - aSpan) * rInner);
       ctx.closePath();
+      ctx.globalAlpha = 0.08;
       ctx.fill();
-      ctx.globalAlpha = 0.25;
+      ctx.globalAlpha = 0.28;
       ctx.stroke();
 
-      ctx.globalAlpha = 0.07;
-      ctx.beginPath();
-      ctx.moveTo(-rInner * 0.68, rInner * 0.72);
-      ctx.lineTo(rInner * 0.68, rInner * 0.72);
-      ctx.lineTo(0, 0);
-      ctx.closePath();
-      ctx.fill();
-      ctx.globalAlpha = 0.25;
-      ctx.stroke();
+      const rMid = (rInner + rBezel) * 0.5;
+      for (let n = 0; n < 4; n++) {
+        const na = Math.PI / 4 + (Math.PI / 2) * n;
+        const nx = Math.cos(na) * rMid;
+        const ny = Math.sin(na) * rMid;
+        ctx.globalAlpha = 0.32;
+        ctx.beginPath();
+        ctx.arc(nx, ny, Math.max(3, baseR * 0.032), 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
 
       ctx.restore();
@@ -4502,22 +4754,13 @@
   (function initBen10000Fx() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = document.documentElement.classList.contains('is-mobile') || (window.matchMedia && window.matchMedia('(pointer: coarse), (max-width: 768px)').matches);
-    const paletteNames = {
-      classic: 'Ben 10 Clássico',
-      alien_force: 'Força Alienígena',
-      omniverse: 'Omniverse',
-      albedo: 'Albedo',
-      gwen_10: 'Gwen 10',
-      ben_23: 'Ben 23',
-      mad_ben: 'Mad Ben',
-      benzarro: 'Benzarro',
-      nega_ben: 'Nega Ben',
-      bad_ben: 'Bad Ben',
-      ben_10000: 'Ben 10.000'
-    };
-    const mode = document.body.getAttribute('data-core-mode');
-    const pn = document.getElementById('paletteName');
-    if (pn) pn.textContent = paletteNames[mode] || 'Ben 10 Clássico';
+    const bannerEmblem = document.getElementById('bannerEmblem');
+    function pulseBannerOmnitrix() {
+      if (!bannerEmblem || reduceMotion) return;
+      bannerEmblem.classList.remove('dial-twist');
+      void bannerEmblem.offsetWidth;
+      bannerEmblem.classList.add('dial-twist');
+    }
 
     const glyphUp = 'ABCDEFHKLNPRSTUXZ';
     const glyphLow = 'acenorsuvxz';
@@ -4615,6 +4858,7 @@
       const meta = tabMeta[tabId];
       if (meta) scramble(document.getElementById('bannerTitle'), meta.title, 560);
       fireBurst();
+      pulseBannerOmnitrix();
       if (tabId === 'dossie') setTimeout(runAnchors, 140);
     };
 
@@ -4885,7 +5129,7 @@
     if (splashActive) {
       document.body.classList.add('fx-hold');
       const st = document.getElementById('bootStatus');
-      setTimeout(() => { if (st) st.textContent = 'MASTER CONTROL DESBLOQUEADO ✓'; }, 1300);
+      setTimeout(() => { if (st) st.textContent = 'NÚCLEO OMNITRIX SINCRONIZADO ✓'; }, 1150);
       splash.addEventListener('animationend', (e) => {
         if (e.animationName === 'bootOut') afterBoot();
       });
@@ -4895,7 +5139,7 @@
       });
       setTimeout(afterBoot, 3000);
     } else {
-      setTimeout(afterBoot, 120);
+      afterBoot();
     }
   })();
 </script>
