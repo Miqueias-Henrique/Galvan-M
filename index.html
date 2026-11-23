@@ -60,8 +60,8 @@ Buscar <kbd class="hud-kbd" aria-hidden="true">Ctrl K</kbd>
 <button type="button" id="tiltToggle" class="hud-tool-btn mobile-only-tool" aria-pressed="true" onclick="toggleMobileTilt()" title="Ativar/Desativar Tilt 3D por movimento no celular">
 Tilt 3D: ON
 </button>
-<button type="button" id="sfxToggle" class="hud-tool-btn active" aria-pressed="true" onclick="toggleSfx()" title="Ativar/Desativar efeito sonoro do Omnitrix">
-Som: ON
+<button type="button" id="sfxToggle" class="hud-tool-btn" aria-pressed="false" onclick="toggleSfx()" title="Ativar/Desativar efeito sonoro do Omnitrix">
+Som: OFF
 </button>
 </div>
 </nav>
@@ -912,7 +912,7 @@ Copiado para a área de transferência.
 <p class="footer-sub">Atalhos: Ctrl+K para buscar · 1–4 para trocar de seção · Marcas exibidas pertencem aos seus proprietários.</p>
 </footer>
 <script>const tabOrder=['dossie','missoes','atributos','frequencia'];
-let currentTabIndex=0,currentRotation=0,sfxEnabled=true,toastTimer=null,transformSound=null;
+let currentTabIndex=0,currentRotation=0,sfxEnabled=false,toastTimer=null,transformSound=null;
 const tabMeta={
 dossie:{label:'Resumo',title:'Backend Júnior com Experiência Real em Produção',desc:'Atuação diária mantendo sistemas de múltiplas farmácias na Zetti (SQL Server e VB6) + 8 projetos práticos no GitHub.'},
 missoes:{label:'Exp. & Projetos',title:'Experiência Profissional e 8 Projetos no GitHub',desc:'Atuação na Zetti (VB6 e SQL Server), experiência anterior e 8 projetos práticos filtráveis por categoria.'},
@@ -964,8 +964,16 @@ if(!transformSound){transformSound=new Audio(audioData);transformSound.volume=0.
 transformSound.currentTime=0;
 transformSound.play().catch(()=>{});
 }
+function renderSfxBtn(){
+const b=document.getElementById('sfxToggle');if(!b)return;
+b.textContent=sfxEnabled?'Som: ON':'Som: OFF';
+b.classList.toggle('active',sfxEnabled);
+b.setAttribute('aria-pressed',String(sfxEnabled));
+}
+try{if(localStorage.getItem('mc_sfx')==='on'){sfxEnabled=true;renderSfxBtn();}}catch(e){}
 function toggleSfx(){
 sfxEnabled=!sfxEnabled;
+try{localStorage.setItem('mc_sfx',sfxEnabled?'on':'off');}catch(e){}
 if(DOM.sfxBtn){
 DOM.sfxBtn.textContent=sfxEnabled?'Som: ON':'Som: OFF';
 DOM.sfxBtn.classList.toggle('active',sfxEnabled);
