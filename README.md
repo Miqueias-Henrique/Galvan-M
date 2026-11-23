@@ -31,6 +31,11 @@ O site é dividido em quatro seções principais:
 
 Para visualizar localmente, basta abrir o `index.html` no navegador ou subir um servidor estático simples na pasta do projeto.
 
+## Participantes
+
+- **Miqueias Carvalho** ([@Miqueias-Henrique](https://github.com/Miqueias-Henrique)) — autor, conteúdo, design e desenvolvimento.
+- **Claude** ([Anthropic](https://www.anthropic.com/claude)) — assistente de IA que colaborou em revisões de design, acessibilidade e usabilidade e em melhorias no código. Os commits feitos por ele aparecem no histórico com a autoria `Claude <noreply@anthropic.com>`.
+
 ## Contato
 
 - **LinkedIn**: [linkedin.com/in/miqueias-henrique-88503b218](https://www.linkedin.com/in/miqueias-henrique-88503b218/)
